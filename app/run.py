@@ -1,5 +1,5 @@
 
-
+import json
 from grades import Grades
 from grade_weights import GradeWeights
 from grade_calculator import GradeCalculator
@@ -7,11 +7,13 @@ from grade_calculator import GradeCalculator
 # This runs the grade calculation.
 
 # Instatiate Grade and Weights objects
+with open('Grades.json', 'r') as f:
+    grades = json.load(f)
 my_grades = Grades()
 weights = GradeWeights()
 
 # Set grades achieved so far
-my_grades.quiz_1 = 0.78 # Received 78% in the first quiz
+my_grades.set_all(grades['quiz_1'], grades['quiz_2'], grades['midterm'], grades['project'], grades['final']) # Received 78% in the first quiz
 
 # Print out the grades to console
 print(my_grades)
